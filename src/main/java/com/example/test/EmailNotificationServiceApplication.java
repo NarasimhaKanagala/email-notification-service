@@ -1,30 +1,32 @@
 package com.example.test;
 
+import com.example.test.service.EmailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.event.EventListener;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.sql.DataSource;
 
 @SpringBootApplication
-public class TestApplication {
+@EnableScheduling
+public class EmailNotificationServiceApplication {
 	@Autowired
 	private EmailSenderService emailSenderService;
 
+
+
+
+
 	public static void main(String[] args) {
-		SpringApplication.run(TestApplication.class, args);
+		SpringApplication.run(EmailNotificationServiceApplication.class, args);
+
 
 	}
-	@EventListener(ApplicationReadyEvent.class)
-	public void sendMail(){
-		emailSenderService.sendEmail("kanagalanarasimha7097@gmail.com",
-				 "This is subject",
-				"This is body");
-	}
+
+
 	@Bean
 	DataSource dataSource() {
 		DriverManagerDataSource driverManagerDataSource = new DriverManagerDataSource();
