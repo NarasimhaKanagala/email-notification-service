@@ -22,12 +22,12 @@ public class FourthHighestSalary {
         list.add(e5);
 
         double result = list.stream()
-                .map(Employee::getSalary)
-                .distinct()
-                .sorted(Comparator.reverseOrder())
-                .skip(3)
-                .findFirst()
-                .orElse(null);
+                .map(Employee::getSalary)//Exact salary from Employee Object
+                .distinct()// removes the duplicates
+                .sorted(Comparator.reverseOrder())//Sort in Descending order
+                .skip(3)//Skip the first 3 highest salaries
+                .findFirst()//Find the 4th Highest Salary
+                .orElse(null);//Handle the cases where not enough salaries exist
         System.out.println(result);
     }
 }
